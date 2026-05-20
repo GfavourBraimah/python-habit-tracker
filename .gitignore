@@ -6,5 +6,3 @@ __pycache__/
 # Pytest cache
 .pytest_cache/
 
-# Database files (Optional, but good practice if you don't want to push test data)
-# data/habits.db

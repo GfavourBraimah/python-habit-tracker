@@ -1,46 +1,67 @@
-# Habit Tracker CLI
+#  Habit Tracker CLI
 
-A professional Python application for tracking and analyzing daily and weekly habits.
+A professional Python command-line application for tracking and analyzing daily and weekly habits. Built with a focus on modularity, data persistence, and clean architecture.
 
-## 1. Description
+##  Overview
 
-This application allows users to create habits, check them off, and view analytics such as current and longest streaks. It uses Object-Oriented Programming (OOP) for the core logic and Functional Programming (FP) for the analytics module. Data is persisted using an SQLite database.
+This application provides a robust backend solution for personal goal tracking. It utilizes **Object-Oriented Programming (OOP)** for the core habit logic and **Functional Programming (FP)** paradigms for the analytics module, ensuring that data manipulation is side-effect-free and easily testable. 
 
-## 2. Requirements
+##  Key Features
 
-- Python 3.7 or newer
-- `questionary` (for the CLI menu)
-- `pytest` (for running tests)
+* **Full CRUD Operations:** Create, read, update (rename), and delete habits seamlessly.
+* **Periodicity Tracking:** Supports both `daily` and `weekly` habit definitions.
+* **Automated Analytics:** Calculates current streaks and identifies the longest overall streaks using pure functions.
+* **Persistent Storage:** All data and event logs are safely stored in an SQLite relational database.
+* **Interactive UI:** A clean, navigable command-line interface powered by `questionary`.
 
-## 3. Installation
+##  Tech Stack
+* **Language:** Python 3.7+
+* **Database:** SQLite3 (Standard Library)
+* **Testing:** Pytest
+* **CLI:** Questionary
 
-1. Navigate to the project root directory.
+##  Screenshots
+
+*(Tutor/Reviewer: See the application in action below)*
+
+**1. Main Interactive Menu:**
+![Main Menu Placeholder - ](./images/database.png)
+
+**2. Verified Automated Testing:**
+![Test Results Placeholder 1 - ](./images/test_habits1.png)
+![Test Results Placeholder 2 - ](./images/test_habits2.png)
+
+##  Installation
+
+1. Clone the repository and navigate to the root directory:
+   ```bash
+   git clone [https://github.com/GfavourBraimah/python-habit-tracker](https://github.com/GfavourBraimah/python-habit-tracker)
+   cd python-habit-tracker
+   ```
+
 2. Install the necessary dependencies:
 
    ```bash
-   pip install questionary pytest
-   ```
+     pip install -r requirements.txt
+    ```
+(Note: Ensure you have installed questionary and pytest)   
 
-## 4. How to Run
+3. Usage
+To start the application, run the entry point from your terminal:
 
-To start the application, run the following command in your terminal:
-
-   ```
-python main.py
-   ```
-
-## 5. Example Usage
-
-Add a Habit: Choose "Add New Habit" and enter the name and periodicity (daily/weekly).
-
-Check-off: Select "Check-off a Habit" to log a completion for today.
-
-Analytics: Select "View Analytics" to see your longest streaks.
-
-## 6. Running Tests
-
-To verify the application logic, run the unit test suite:
-
+```bash
+  python main.py
 ```
-python -m pytest
+
+* **Add a Habit:** Choose option 3 to define a new daily or weekly goal.
+* **Check-off:** Select option 2 to log a completion timestamp for today.
+* **Analytics:** Select option 6 to access the FP-driven analytics sub-menu.
+
+4. Testing
+This project utilizes pytest to verify core logic, database operations, and streak calculations. The repository includes a pre-seeded database with 4 weeks of test data for 5 predefined habits.
+
+To run the complete test suite:
+
+```bash
+  python -m pytest
 ```
