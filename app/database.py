@@ -12,7 +12,7 @@ def initialize_db():
     conn = get_db_connection()
     cursor = conn.cursor()
     
-    # Table 1: Stores the habit definition
+
     cursor.execute('''
         CREATE TABLE IF NOT EXISTS habits (
             name TEXT PRIMARY KEY,
@@ -21,7 +21,7 @@ def initialize_db():
         )
     ''')
     
-    # Table 2: Stores every single time a habit was completed
+
     cursor.execute('''
         CREATE TABLE IF NOT EXISTS completions (
             habit_name TEXT,
@@ -38,13 +38,13 @@ def save_habit(habit):
     conn = get_db_connection()
     cursor = conn.cursor()
     
-    # Insert habit info (or ignore if it's already there)
+   
     cursor.execute(
         "INSERT OR IGNORE INTO habits (name, periodicity, created_at) VALUES (?, ?, ?)",
         (habit.name, habit.periodicity, habit.created_at.isoformat())
     )
     
-    # Clear and re-insert completions to keep it simple for now
+  
     cursor.execute("DELETE FROM completions WHERE habit_name = ?", (habit.name,))
     for timestamp in habit.completions:
         cursor.execute(
@@ -60,9 +60,9 @@ def delete_habit(name):
     conn = get_db_connection()
     cursor = conn.cursor()
     
-    # Delete the logs first (Foreign Key constraint best practice)
+
     cursor.execute("DELETE FROM completions WHERE habit_name = ?", (name,))
-    # Delete the actual habit
+  
     cursor.execute("DELETE FROM habits WHERE name = ?", (name,))
     
     conn.commit()
@@ -73,9 +73,7 @@ def edit_habit_name(old_name, new_name):
     conn = get_db_connection()
     cursor = conn.cursor()
     
-    # Update the logs to point to the new name
     cursor.execute("UPDATE completions SET habit_name = ? WHERE habit_name = ?", (new_name, old_name))
-    # Update the habit definition
     cursor.execute("UPDATE habits SET name = ? WHERE name = ?", (new_name, old_name))
     
     conn.commit()

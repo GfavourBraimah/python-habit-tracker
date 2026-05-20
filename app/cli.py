@@ -36,7 +36,7 @@ def view_analytics(habits):
             print("No habits available to analyze.")
             return
         target = questionary.select("Select a habit:", choices=names).ask()
-        # Find the habit object and calculate its streak
+      
         for h in habits:
             if h.name == target:
                 s = calculate_streak(h.completions, h.periodicity)
@@ -50,8 +50,8 @@ def main_menu(habits):
         print("1. View All Habits")
         print("2. Check-off a Habit")
         print("3. Add New Habit")
-        print("4. Edit a Habit Name")  # NEW
-        print("5. Delete a Habit")     # NEW
+        print("4. Edit a Habit Name")  
+        print("5. Delete a Habit")     
         print("6. View Analytics")
         print("7. Exit")
         
@@ -88,9 +88,9 @@ def main_menu(habits):
         elif choice == '4':
             old_name = input("Enter the current name of the habit to edit: ")
             new_name = input("Enter the new name: ")
-            # Update the database
+          
             edit_habit_name(old_name, new_name)
-            # Update the object in memory
+          
             for h in habits:
                 if h.name.lower() == old_name.lower():
                     h.name = new_name
@@ -98,9 +98,9 @@ def main_menu(habits):
 
         elif choice == '5':
             name = input("Enter the name of the habit to delete: ")
-            # Delete from database
+     
             delete_habit(name)
-            # Remove from memory safely
+          
             habit_to_remove = None
             for h in habits:
                 if h.name.lower() == name.lower():

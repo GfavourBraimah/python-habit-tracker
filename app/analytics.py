@@ -18,14 +18,13 @@ def calculate_streak(completions, periodicity):
     if not completions:
         return 0
 
-    # Sort completions from newest to oldest
-    # We use 'set' to remove duplicate entries on the same day
+  
     sorted_dates = sorted(list(set([c.date() for c in completions])), reverse=True)
     
     streak = 0
     current_date = datetime.now().date()
     
-    # Define the 'gap' allowed before a streak breaks
+ 
     limit = 1 if periodicity == 'daily' else 7
 
     for date in sorted_dates:
@@ -33,9 +32,9 @@ def calculate_streak(completions, periodicity):
         
         if diff <= limit:
             streak += 1
-            current_date = date # Move the goalpost back
+            current_date = date
         else:
-            break # Streak is broken
+            break 
             
     return streak
 
